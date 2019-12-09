@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="505_Final_Merge" targetName="505_Final_Merge" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="205e016e-d4c9-45b3-ba08-5b249eff6dc3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/BigTable/BigTableClient.h" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/BigTableClient.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/Checkpoints/server_0.checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Checkpoints/server_0.checkpoint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/Checkpoints/server_1.checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Checkpoints/server_1.checkpoint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/Payload.h" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Payload.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/Tablet.h" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Tablet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/TestClient.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/bigtable_server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/bigtable_server.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/client" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/client.dSYM/Contents/Resources/DWARF/client" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/client.dSYM/Contents/Resources/DWARF/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/communication.h" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/communication.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/large_file.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/sample_client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/sample_client.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/server" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable/server.dSYM/Contents/Resources/DWARF/server" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/server.dSYM/Contents/Resources/DWARF/server" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/BigTable" />
+  </component>
+  <component name="ProjectId" id="1Uin6rBPfDV3xJJAOK67C6rJ80W" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="505_Final_Merge" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="505_Final_Merge" TARGET_NAME="505_Final_Merge" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="505_Final_Merge" RUN_TARGET_NAME="505_Final_Merge">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="205e016e-d4c9-45b3-ba08-5b249eff6dc3" name="Default Changelist" comment="" />
+      <created>1575848111048</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575848111048</updated>
+      <workItem from="1575848113364" duration="2532000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

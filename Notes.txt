@@ -1,0 +1,29 @@
+
+
+
+client - write
+tries to establish connection down the list based on row->id 
+the first it connects to is the primary
+send request
+
+client - read
+pick any server in list
+send read request
+
+
+
+
+
+/*    Reading / Writing Flow in communications.h
+
+  1) Receiver waits for sender to send payload (without data field)
+
+  2) Receiver extracts data size from payload 
+
+  3) Send +OK to sender to let them know receiver is ready for data  
+  
+  4) Sender sends data by itself
+
+  5) Reader reads in data and appends to payload 
+
+*/
