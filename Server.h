@@ -7,12 +7,12 @@
 
 
 #include <map>
+#include "BigTableClient.h"
 
 class Server {
 
 public:
-    static std::map<std::string, std::string> user_pass;
-    static std::map<std::string, std::string> guid_user;
+    static BigTableClient bigTableClient;
     bool run = true;
     void startServer();
 };

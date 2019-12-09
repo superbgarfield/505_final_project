@@ -11,9 +11,9 @@
 #include "Writer.h"
 #include "ThreadHandler.h"
 #include "Server.h"
+#include "BigTableClient.h"
 
-std::map<std::string, std::string> Server::user_pass;
-std::map<std::string, std::string> Server::guid_user;
+BigTableClient Server::bigTableClient;
 
 void Server::startServer() {
     int port_num = 5051;
@@ -33,6 +33,7 @@ void Server::startServer() {
     //listen
     listen(sockfd, 100);
     pthread_t thread;
+    bigTableClient.initialize("config.txt", 1, true);
     while (run) {
         struct sockaddr_in clientaddr;
         socklen_t clientaddrlen = sizeof(clientaddr);

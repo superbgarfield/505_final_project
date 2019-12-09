@@ -94,6 +94,9 @@
 		<Unit filename="/Users/TheSuperbGarfield/505_Final_Merge/DriveClient.h">
 			<Option target="505_Final_Merge"/>
 		</Unit>
+		<Unit filename="/Users/TheSuperbGarfield/505_Final_Merge/EmailClient.h">
+			<Option target="505_Final_Merge"/>
+		</Unit>
 		<Unit filename="/Users/TheSuperbGarfield/505_Final_Merge/GetHandler.cpp">
 			<Option target="505_Final_Merge"/>
 		</Unit>
@@ -152,6 +155,9 @@
 			<Option target="505_Final_Merge"/>
 		</Unit>
 		<Unit filename="/Users/TheSuperbGarfield/505_Final_Merge/config.txt">
+			<Option target="505_Final_Merge"/>
+		</Unit>
+		<Unit filename="/Users/TheSuperbGarfield/505_Final_Merge/email.h">
 			<Option target="505_Final_Merge"/>
 		</Unit>
 		<Unit filename="/Users/TheSuperbGarfield/505_Final_Merge/io.h">

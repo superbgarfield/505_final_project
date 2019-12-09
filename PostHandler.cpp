@@ -8,6 +8,8 @@
 #include "Server.h"
 #include "Mail.h"
 #include "DriveClient.h"
+#include "userHandler.h"
+#include "admin.h"
 
 using json = nlohmann::json;
 
@@ -25,17 +27,15 @@ std::string PostHandler::handleRequest(std::string& request) {
         std::string user = j["email"];
         std::string pass = j["password"];
         //this means user already exists
-        if (Server::user_pass.find(user) != Server::user_pass.end()) {
-            json fail;
-            fail["message"] = "FAIL";
-            return sendOk(fail.dump());
-        //user pass combo can be created
-        } else {
-            Server::user_pass[user] = pass;
-            //TODO: put user pass combo in bigtable
+        bool valid = store_usr_pass(Server::bigTableClient, user, pass, false);
+        if (valid) {
             json p;
             p["message"] = "PASS";
             return sendOk(p.dump());
+        } else {
+            json fail;
+            fail["message"] = "FAIL";
+            return sendOk(fail.dump());
         }
     } else if (path == loginPath) {
         std::string data = findData(request);
@@ -43,21 +43,20 @@ std::string PostHandler::handleRequest(std::string& request) {
         json j = json::parse(data);
         std::string user = j["email"];
         std::string pass = j["password"];
-        //user not in system or user pass combo wrong
-        if (Server::user_pass.find(user) == Server::user_pass.end() || Server::user_pass[user] != pass) {
-            json fail;
-            fail["message"] = "FAIL";
-            return sendOk(fail.dump());
-        //user in system, pass correct
-        } else {
-            //map cookie to user
-            Server::guid_user[cookie] = user;
+        //Potentially could fail if backend goes down
+        store_usr_cookie(Server::bigTableClient, user, cookie);
+        bool valid = usr_valid(Server::bigTableClient, user, pass);
+        if (valid) {
             json p;
             p["message"] = "PASS";
             return sendOk(p.dump());
+        } else {
+            json fail;
+            fail["message"] = "FAIL";
+            return sendOk(fail.dump());
         }
     } else if (path == logOutPath) {
-        Server::guid_user.erase(Server::guid_user.find(cookie));
+        del_usr_cookie(Server::bigTableClient, cookie);
         json p;
         p["message"] = "PASS";
         return p.dump();
@@ -66,11 +65,16 @@ std::string PostHandler::handleRequest(std::string& request) {
         data = data.substr(0, data.find_last_of('}') + 1);
         json j = json::parse(data);
         std::string pass = j["password"];
-        //TODO: put user pass combo in bigtable
-        Server::user_pass[Server::guid_user[cookie]] = pass;
-        json p;
-        p["message"] = "PASS";
-        return sendOk(p.dump());
+        bool valid = store_usr_pass(Server::bigTableClient, get_usr_from_cookie(Server::bigTableClient, cookie), pass, true);
+        if (valid) {
+            json p;
+            p["message"] = "PASS";
+            return sendOk(p.dump());
+        } else {
+            json fail;
+            fail["message"] = "FAIL";
+            return sendOk(fail.dump());
+        }
     } else if (path == mailPath) {
         //TODO: modify this to work with MailClient
         std::vector<std::string> rcpts;
@@ -148,8 +152,8 @@ std::string PostHandler::handleRequest(std::string& request) {
         std::string currentDir = j["current"];
         std::string type = j["type"];
         std::string deletePath = j["name"];
-        //TODO: get username
-        driveClient.initialize("fake");
+        std::string user = get_usr_from_cookie(Server::bigTableClient, cookie);
+        driveClient.initialize(user);
         std::string status = driveClient.remove(currentDir, deletePath, type == "file" ? TYPE_FILE : TYPE_DIRECTORY);
         if (status == BACKEND_DEAD) {
             //TODO: return 500;
@@ -165,8 +169,8 @@ std::string PostHandler::handleRequest(std::string& request) {
         std::string currentName = j["current-name"];
         std::string type = j["type"];
         std::string newPath = j["new-path"];
-        //TODO: get username
-        driveClient.initialize("fake");
+        std::string user = get_usr_from_cookie(Server::bigTableClient, cookie);
+        driveClient.initialize(user);
         std::string status = driveClient.move(currentDir, currentName, newPath, type == "file" ? TYPE_FILE : TYPE_DIRECTORY);
         if (status == BACKEND_DEAD) {
             //TODO: return 500;
@@ -186,8 +190,8 @@ std::string PostHandler::handleRequest(std::string& request) {
         std::string currentName = j["current-name"];
         std::string type = j["type"];
         std::string newName = j["new-name"];
-        //TODO: get username
-        driveClient.initialize("fake");
+        std::string user = get_usr_from_cookie(Server::bigTableClient, cookie);
+        driveClient.initialize(user);
         std::string status = driveClient.rename(currentDir, currentName, newName, type == "file" ? TYPE_FILE : TYPE_DIRECTORY);
         if (status == BACKEND_DEAD) {
             //TODO: return 500;
@@ -205,8 +209,8 @@ std::string PostHandler::handleRequest(std::string& request) {
         json j = json::parse(data);
         std::string currentDir = j["current"];
         std::string newName = j["folder-name"];
-        //TODO: get username
-        driveClient.initialize("fake");
+        std::string user = get_usr_from_cookie(Server::bigTableClient, cookie);
+        driveClient.initialize(user);
         std::string status = driveClient.make_dir(currentDir, newName);
         if (status == BACKEND_DEAD) {
             //TODO: return 500;
@@ -225,8 +229,8 @@ std::string PostHandler::handleRequest(std::string& request) {
         std::string currentDir = j["current"];
         std::string fileName = j["name"];
         std::string content = j["content"];
-        //TODO: get username
-        driveClient.initialize("fake");
+        std::string user = get_usr_from_cookie(Server::bigTableClient, cookie);
+        driveClient.initialize(user);
         std::string status = driveClient.upload(currentDir, fileName, content);
         if (status == BACKEND_DEAD) {
             //TODO: return 500;
@@ -244,8 +248,8 @@ std::string PostHandler::handleRequest(std::string& request) {
         json j = json::parse(data);
         std::string currentDir = j["current"];
         std::string fileName = j["name"];
-        //TODO: get username
-        driveClient.initialize("fake");
+        std::string user = get_usr_from_cookie(Server::bigTableClient, cookie);
+        driveClient.initialize(user);
         std::string content;
         std::string status = driveClient.download(currentDir, fileName, content);
         if (status == BACKEND_DEAD) {
@@ -255,11 +259,46 @@ std::string PostHandler::handleRequest(std::string& request) {
         ret["file"] = content;
         return sendOk(ret.dump());
     } else if (path == adminPath) {
-
+        std::vector<ServerInfo> server_info = get_back_nodes(Server::bigTableClient);
+        json ret;
+        for (auto server: server_info) {
+            json serv;
+            serv["id"] = server.id;
+            serv["address"] = server.address;
+            serv["load"] = server.load;
+            serv["status"] = server.on;
+            ret.push_back(serv);
+        }
+        //TODO: frontend servers
+        return sendOk(ret.dump());
     } else if (path == adminTogglePath) {
-
+        std::string data = findData(request);
+        data = data.substr(0, data.find_last_of('}') + 1);
+        json j = json::parse(data);
+        std::string status = j["status"];
+        std::string address = j["address"];
+        if (status == "on") {
+            turn_off_node(address);
+        } else {
+            turn_on_node(address);
+        }
+        json p;
+        p["message"] = "PASS";
+        return sendOk(p.dump());
     } else if (path == adminContentPath) {
-
+        std::string data = findData(request);
+        data = data.substr(0, data.find_last_of('}') + 1);
+        json j = json::parse(data);
+        std::string address = j["address"];
+        std::vector<ServerDataPoint> serverData = get_node_data(address);
+        json ret;
+        for (auto data: serverData) {
+            json dataPoint;
+            dataPoint["row"] = data.row;
+            dataPoint["col"] = data.col;
+            dataPoint["data"] = data.partialData;
+        }
+        return sendOk(ret.dump());
     }
     //should be unreachable
     return "";

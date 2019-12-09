@@ -26,7 +26,7 @@ struct ServerDataPoint {
     std::string partialData;
 };
 
-struct Server {
+struct ServerInfo {
     int id ; 
     size_t load ;
     bool on;
@@ -138,8 +138,8 @@ std::vector<ServerDataPoint> get_node_data(std::string nodeAddr) {
 }
 
 // returns names of all backend nodes and their statuses
-std::vector<Server> get_back_nodes(BigTableClient big_table){
-    std::vector<Server> result ;
+std::vector<ServerInfo> get_back_nodes(BigTableClient big_table){
+    std::vector<ServerInfo> result ;
     int id = 0 ; // server ID: just a counter
     std::map<int, std::vector<Node> > allServers = big_table.cluster_id_to_nodes ;
 
@@ -164,7 +164,7 @@ std::vector<Server> get_back_nodes(BigTableClient big_table){
 				if (PRINT_LOGS) printf("[F] Sent read message to server %s on socket %d.\n", nodes[i].domain_port.c_str(), connection_fd);
 			}
 			else {
-                Server current ;
+                ServerInfo current ;
                 current.id = id ;
                 current.on = false ;
                 current.address = nodes[i].domain_port ;
@@ -205,7 +205,7 @@ std::vector<Server> get_back_nodes(BigTableClient big_table){
             }
         }
 
-        Server current ;
+        ServerInfo current ;
         current.id = id ;
         current.on = true ;
         current.address = addr ;

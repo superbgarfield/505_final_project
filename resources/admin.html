@@ -59,16 +59,28 @@
                 $.post("/web/logout");
                 window.location.replace("/web");
             });
+            $.post("/web/admin", function (event) {
+               //parse returned json to create table rows
+            });
             $('.toggleButton').on('click', function (event) {
                 var status = $(event.currentTarget.parentElement.parentElement).find('.serverStatus').text();
+                var address = $(event.currentTarget.parentElement.parentElement).find('.serverAddress').text();
                 if (status === "On") {
-                    $(event.currentTarget.parentElement.parentElement).find('.serverStatus').text("Off")
+                    $.post("/web/admin/toggle", '{"status":"on", "address":"' + address + '"}', function (data) {
+                        $(event.currentTarget.parentElement.parentElement).find('.serverStatus').text("Off")
+                    });
                 } else {
-                    $(event.currentTarget.parentElement.parentElement).find('.serverStatus').text("On")
+                    $.post("/web/admin/toggle", '{"status":"on", "address":"' + address + '"}', function (data) {
+                        $(event.currentTarget.parentElement.parentElement).find('.serverStatus').text("On")
+                    });
                 }
             });
             $('.contentButton').on('click', function (event) {
+                var address = $(event.currentTarget.parentElement.parentElement).find('.serverAddress').text();
                 var server = $(event.currentTarget.parentElement.parentElement).find('th').text();
+                $.post("/web/admin/content", '{""address":"' + address + '"}', function (data) {
+                    //parse returned json to create table rows
+                });
                 $('#contentModal').find('.modal-title').text("Tablet Content: Server " + server);
                 $('#contentModal').modal('show');
             });
@@ -124,7 +136,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row" class="align-middle">1</th>
-                                <td class="align-middle">localhost:5000</td>
+                                <td class="align-middle serverAddress">localhost:5000</td>
                                 <td class="align-middle serverType">Backend</td>
                                 <td class="align-middle serverStatus">On</td>
                                 <td class="align-middle"><button class="btn btn-danger toggleButton">Toggle</button></td>
@@ -133,7 +145,7 @@
                             </tr>
                             <tr>
                                 <th scope="row" class="align-middle">2</th>
-                                <td class="align-middle">localhost:5001</td>
+                                <td class="align-middle serverAddress">localhost:5001</td>
                                 <td class="align-middle serverType">Backend</td>
                                 <td class="align-middle serverStatus">Off</td>
                                 <td class="align-middle"><button class="btn btn-danger toggleButton">Toggle</button></td>
@@ -142,7 +154,7 @@
                             </tr>
                             <tr>
                                 <th scope="row" class="align-middle">3</th>
-                                <td class="align-middle">localhost:5002</td>
+                                <td class="align-middle serverAddress">localhost:5002</td>
                                 <td class="align-middle serverType">Frontend</td>
                                 <td class="align-middle serverStatus">On</td>
                                 <td class="align-middle"><button class="btn btn-danger toggleButton">Toggle</button></td>

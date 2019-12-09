@@ -35,6 +35,8 @@ add_executable(505_Final_Merge
         Server.cpp
         Server.h
         Tablet.h
+        email.h
+        EmailClient.h
         ThreadHandler.cpp
         ThreadHandler.h
         userHandler.h

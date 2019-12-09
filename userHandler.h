@@ -27,13 +27,20 @@ bool usr_valid(BigTableClient big_table, std::string user, std::string pass){
     return true;
 }
 
-bool store_usr_pass(BigTableClient big_table, std::string user, std::string pass){
+bool store_usr_pass(BigTableClient big_table, std::string user, std::string pass, bool change){
     user = accountPref + user ;
 
-    // check that user doesn't exist first 
-	std::string old_pass;
-	int retGet = big_table.get(user, user, old_pass);
-    if (retGet > 0) return false ; // such user exists
+    if (!change) {
+        // check that user doesn't exist first
+        std::string old_pass;
+        int retGet = big_table.get(user, user, old_pass);
+        if (retGet > 0) return false ; // such user exists
+    } else {
+        // check that user exists first
+        std::string old_pass;
+        int retGet = big_table.get(user, user, old_pass);
+        if (retGet < 0) return false ; // such user does not exists
+    }
 
     // check for password being none-empty
     if (pass.length() == 0) return false ;

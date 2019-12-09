@@ -12,6 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="205e016e-d4c9-45b3-ba08-5b249eff6dc3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/EmailClient.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/email.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigTable" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigTable/BigTableClient.h" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/BigTableClient.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigTable/Checkpoints/server_0.checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Checkpoints/server_0.checkpoint" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigTable/Checkpoints/server_1.checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/Checkpoints/server_1.checkpoint" afterDir="false" />
@@ -28,6 +33,14 @@
       <change beforePath="$PROJECT_DIR$/BigTable/sample_client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/sample_client.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigTable/server" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/server" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigTable/server.dSYM/Contents/Resources/DWARF/server" beforeDir="false" afterPath="$PROJECT_DIR$/BigTable/server.dSYM/Contents/Resources/DWARF/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTMLtoString.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLtoString.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PostHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PostHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.h" beforeDir="false" afterPath="$PROJECT_DIR$/Server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin.h" beforeDir="false" afterPath="$PROJECT_DIR$/admin.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/userHandler.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +53,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/BigTable" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Uin6rBPfDV3xJJAOK67C6rJ80W" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -82,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575848111048</updated>
-      <workItem from="1575848113364" duration="2532000" />
+      <workItem from="1575848113364" duration="6088000" />
     </task>
     <servers />
   </component>
@@ -99,5 +115,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

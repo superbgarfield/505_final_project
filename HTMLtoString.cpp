@@ -3,10 +3,12 @@
 //
 
 #include "HTMLtoString.h"
+#include "Server.h"
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <random>
+#include <userHandler.h>
 
 std::string HTMLtoString::goodRequest(const std::string& page, bool allocateCookie) {
     std::string htmlPage = readHTML(pages[page]);
@@ -15,7 +17,6 @@ std::string HTMLtoString::goodRequest(const std::string& page, bool allocateCook
     if (allocateCookie) {
         std::random_device randomDevice;
         cookie = "Set-Cookie: penncloud-session=" + std::to_string(randomDevice()) + "\r\n";
-        //TODO: put in BigTable
     }
     std::string response = "HTTP/1.1 200 Okay\r\nContent-Type: text/html\r\nContent-length: " + std::to_string(htmlPage.length()) + "\r\n" + cookie + "\r\n";
     response.append(htmlPage);
